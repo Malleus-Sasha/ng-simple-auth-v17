@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #605DC8;
+  --secondary-color: #8B89E6;
+  --accent-color: #e8e7fa;
+  --shadow-color: #E8E8E8;
+
+  --input-padding: 4px;
+  --button-padding: 9px;
+  /* test */
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-border-color: #dee2e6;
+  --bs-border-radius: 0.375rem;
+  --bs-border-width: 1px;
+  --bs-form-invalid-color: #dc3545;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  margin: var(--input-padding);
+  padding: var(--input-padding);
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btn-primary {
+  padding: var(--button-padding);
+  border: solid 1px var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+}
+
+.btn-primary:hover {
+  background-color: hsl(242, 49%, 67%);
+}
+
+.btn-primary:active {
+  background-color: hsl(242, 49%, 50%);
+}
+
+.btn-primary:disabled {
+  background-color: hsl(242, 49%, 77%);
+}
+
+.form-control {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--input-padding) 8px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-radius: var(--bs-border-radius);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+.form-control:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(13,110,253,.25);
+}
+
+.form-control:hover {
+  border-color: #196ff1;
+}
+
+.invalid-mess {
+  padding: 1rem;
+  margin: 10px;
+  border-radius: 6px;
+  background-color: #f8d7da;
+  border: 1px solid var(--bs-form-invalid-color);
+  color: #58151c;
+}

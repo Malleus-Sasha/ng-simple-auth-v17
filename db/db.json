@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "f@f.co",
+      "password": "$2a$10$sRCdcMJ.7g6qTP0u3b8U7OYy/38vxVMarhCY79vx8PaqmFA7rjG1e",
+      "username": "firstuser",
+      "pas": "1234",
+      "id": 1
+    }
+  ]
+}
