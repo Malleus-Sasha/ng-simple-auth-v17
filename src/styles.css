@@ -46,6 +46,14 @@ input {
   border-radius: 8px;
 }
 
+.btn-secondary {
+  padding: var(--button-padding);
+  border: solid 1px var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+}
+
 .btn-primary:hover {
   background-color: hsl(242, 49%, 67%);
 }
@@ -83,9 +91,14 @@ input {
 
 .invalid-mess {
   padding: 1rem;
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 6px;
   background-color: #f8d7da;
   border: 1px solid var(--bs-form-invalid-color);
   color: #58151c;
+}
+
+.split-block {
+  display: flex;
+  justify-content: space-between;
 }

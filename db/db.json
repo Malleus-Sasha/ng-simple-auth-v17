@@ -6,6 +6,18 @@
       "username": "firstuser",
       "pas": "1234",
       "id": 1
+    },
+    {
+      "email": "f1@f.com",
+      "password": "$2a$10$0PAeU5wkArxQ.6KBmizI6eUN9ey0wZG10wtdxkCIVxpqSRNnsQc1O",
+      "username": "f1",
+      "pas": "123456",
+      "id": 2
+    }
+  ],
+  "messages": [
+    {
+      "text": "Test text"
     }
   ]
 }

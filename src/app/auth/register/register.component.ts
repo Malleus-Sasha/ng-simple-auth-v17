@@ -3,6 +3,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import { UserAuth } from '../models/user-auth';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,8 @@ import { UserAuth } from '../models/user-auth';
 export class RegisterComponent {
   private fb = inject(FormBuilder);
   private http = inject(HttpClient);
-
+  private router = inject(Router);
+  private authService = inject(AuthService);
   error = 'test';
 
   form = this.fb.nonNullable.group({
@@ -29,7 +32,7 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    console.log(':Login:Submit');
+    console.log(':Register:Submit');
     const url = 'http://localhost:3000/register';
     const data = this.form.getRawValue();
     console.log(':Reg: data', data);
@@ -43,8 +46,12 @@ export class RegisterComponent {
     )
     .subscribe((res) => {
       console.log('Reg:Res:', res);
+      // TODO -> service
       localStorage.setItem('token', res.accessToken);
-      if(res.user.id) localStorage.setItem('user', res.user.id);
+      if(res.user.id) localStorage.setItem('userId', res.user.id);
+
+      this.authService.currentUserSig.set(res.user);
+      this.router.navigateByUrl('/');
     })
   }
 }

@@ -4,7 +4,7 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class ServicesService {
+export class AuthService {
   currentUserSig = signal<User | undefined | null>(undefined);
 
   constructor() { }

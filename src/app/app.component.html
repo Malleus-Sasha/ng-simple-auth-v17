@@ -6,12 +6,22 @@
   {{ authService.currentUserSig()?.username }}
   <span (click)="logout()">Logout</span>
 </div> -->
-<div>
-  <a routerLink="/">Home</a> |
-  <a routerLink="/login">Login</a> |
-  <a routerLink="/register">Register</a> |
+<div class="split-block">
+  <div>
+    <a routerLink="/">Home</a> |
+    <a routerLink="messages">Messages</a>
+  </div>
+  <div *ngIf="authService.currentUserSig() === null">
+    <a routerLink="/login">Login</a> |
+    <a routerLink="/register">Register</a> |
+  </div>
+  <div *ngIf="authService.currentUserSig()">
+    {{ authService.currentUserSig()?.username }}
+    <button class="btn-primary" (click)="logout()">Logout</button>
+  </div>
 </div>
-<div>
-  <button (click)="logout()">Logout</button>
+
+<div *ngIf="error">
+  <div class="invalid-mess">{{ error }}</div>
 </div>
 <router-outlet></router-outlet>
