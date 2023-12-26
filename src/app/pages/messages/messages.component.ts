@@ -1,5 +1,6 @@
+import { ModalService } from './../../services-ui/modal.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, inject } from '@angular/core';
 
 interface Mess {
   text: string;
@@ -13,6 +14,9 @@ interface Mess {
     <p>
       messages works!
     </p>
+    
+    <button (click)="openModal(modalTemplate)">Open modal</button>
+
     @if (error) {
       <div>
         <div class="invalid-mess">{{ error }}</div>
@@ -23,6 +27,10 @@ interface Mess {
         <p>{{ item.text }}</p>
       }
     </div>
+    
+    <ng-template #modalTemplate>
+      <div>This is our custom modal :MESSAGES:</div>
+    </ng-template>
   `,
   styles: `
     :host {
@@ -35,9 +43,12 @@ export class MessagesComponent implements OnInit {
   messages: Mess[] = [];
   error = '';
 
+  constructor(private modalService: ModalService) {}
+
   ngOnInit(): void {
     this.getMessages();
   }
+
   getMessages() {
     this.http.get<Mess[]>('http://localhost:3000/messages').subscribe({
       // next: (value) => {},
@@ -51,5 +62,13 @@ export class MessagesComponent implements OnInit {
         this.error = err.error;
       },
     });
+  }
+
+  openModal(modalTemplate: TemplateRef<any>) {
+    this.modalService
+      .open(modalTemplate, { size: 'lg', title: 'Foo' })
+      .subscribe((action: any) => {
+        console.log('modal:Action:', action);
+      })
   }
 }
