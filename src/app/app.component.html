@@ -6,10 +6,11 @@
   {{ authService.currentUserSig()?.username }}
   <span (click)="logout()">Logout</span>
 </div> -->
-<div class="split-block">
+<div class="split-block nav-top">
   <div>
     <a routerLink="/">Home</a> |
-    <a routerLink="messages">Messages</a>
+    <a routerLink="messages">Messages</a> |
+    <a routerLink="posts">Posts</a>
   </div>
   <div *ngIf="authService.currentUserSig() === null">
     <a routerLink="/login">Login</a> |

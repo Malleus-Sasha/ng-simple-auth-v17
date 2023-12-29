@@ -1,6 +1,11 @@
 import { ModalService } from './../../services-ui/modal.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, inject } from '@angular/core';
+import { AlertComponent } from '../../ui/alert/alert.component';
+import { AlertService } from '../../ui/alert/alert.service';
+import { AlertActions } from '../../ui/alert/types/alert-actions';
+import { TooltipDirective } from '../../ui/tooltip/tooltip.directive';
+import { TooltipComponent } from '../../ui/tooltip/tooltip.component';
 
 interface Mess {
   text: string;
@@ -9,13 +14,22 @@ interface Mess {
 @Component({
   selector: 'app-messages',
   standalone: true,
-  imports: [],
+  imports: [AlertComponent, TooltipDirective],
   template: `
-    <p>
-      messages works!
-    </p>
+    <p>messages works!</p>
+
+    <app-alert/>
+
+    <div>
+      <button (click)="showAlert(alertActions.DANGER)">Show danger</button>
+      <button (click)="showAlertSuccess(alertActions.SUCCESS)">Show success</button>
+      | 
+      <button (click)="openModal(modalTemplate)">Open modal</button>
+      | 
+      <button appTooltip tooltipText="This is our tooltip text" class="btn-primary">Hover to see tooltip</button>
+    </div>
+
     
-    <button (click)="openModal(modalTemplate)">Open modal</button>
 
     @if (error) {
       <div>
@@ -40,10 +54,14 @@ interface Mess {
 })
 export class MessagesComponent implements OnInit {
   private http = inject(HttpClient);
+  alertActions = AlertActions;
   messages: Mess[] = [];
   error = '';
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    private alertService: AlertService,
+  ) {}
 
   ngOnInit(): void {
     this.getMessages();
@@ -70,5 +88,19 @@ export class MessagesComponent implements OnInit {
       .subscribe((action: any) => {
         console.log('modal:Action:', action);
       })
+  }
+
+  showAlert(type: AlertActions) {
+    this.alertService.setAlert({
+      type,
+      text: 'This is our test Alert -1-',
+    })
+  }
+
+  showAlertSuccess(type: AlertActions) {
+    this.alertService.setAlert({
+      type,
+      text: 'Is SUCCESS Alert',
+    })
   }
 }

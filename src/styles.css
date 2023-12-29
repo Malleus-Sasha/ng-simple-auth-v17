@@ -102,3 +102,19 @@ input {
   display: flex;
   justify-content: space-between;
 }
+
+.nav-top a {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 4px;
+  color: var(--primary-color);
+}
+
+.nav-top a:hover {
+  text-decoration: none;
+}
+
+.nav-top a:active {
+  /* background: var(--secondary-color); */
+  box-shadow: inset 1px 1px 4px 1px rgba(13, 110, 253, .25);
+}
